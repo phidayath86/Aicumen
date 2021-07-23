@@ -16,7 +16,7 @@ stage('UploadArtifactIntoNexus')
 {
 sh "mvn install"
 }
-agent any
+node
 stages {
     stage('Send Email') {
         steps {
