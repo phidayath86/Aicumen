@@ -34,7 +34,7 @@ sh "mvn install"
             echo 'I was aborted'
         }
         failure {
-            mail to: 'aa@bb.cc',
+            mail to: 'hidayathulla.patnam@gmail.com',
             subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
             body: "Something is wrong with ${env.BUILD_URL}"
         }
