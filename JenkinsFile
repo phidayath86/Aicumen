@@ -1,18 +1,25 @@
 node
 {
-stage ('GetCodeFromGit')
-{
-git branch: 'main', credentialsId: 'b21d26ef-b8cd-44db-8619-d4aa4082d36f', url: 'https://github.com/phidayath86/Aicumen.git'
-}
-stage('Build')
-{
-sh "mvn clean package"
-}
-stage('SonarQubeReport')
-{
-sh "mvn sonar:sonar"
-}
-stage('UploadArtifactIntoNexus')
-{
-sh "mvn install"
+    try{
+        
+            emailext body: 'Test!!!', subject: 'starting jenkins', to: 'hidayathulla.patnam@gmail.com'
+        stage ('GetCodeFromGit')
+        {
+        git branch: 'main', credentialsId: 'b21d26ef-b8cd-44db-8619-d4aa4082d36f', url: 'https://github.com/phidayath86/Aicumen.git'
+        }
+        stage('Build')
+        {
+        sh "mvn clean package"
+        }
+        stage('SonarQubeReport')
+        {
+        sh "mvn sonar:sonars"
+        }
+        stage('UploadArtifactIntoNexus')
+        {
+        sh "mvn install"
+        }
+    }catch (err) {
+        emailext body: "Caught: ${err}", subject: 'BUILD FAILED', to: 'hidayathulla.patnam@gmail.com'
+    }
 }
