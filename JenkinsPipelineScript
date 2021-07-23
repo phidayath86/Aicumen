@@ -16,12 +16,22 @@ stage('UploadArtifactIntoNexus')
 {
 sh "mvn install"
 }
+stage ('EmailNotify')
+{
+post 
+{
+failure{
+		mail body:'''Build Over!..failed
+		Regards,
+		Mithun Technologies''', subject:'Build Over...', to:'hidayathulla.patnam@gmail.com'
 }
-node {
+}
+}
+/*node {
 
   notifyStarted()
 
-  /* ... existing build steps ... */
+   ... existing build steps ... 
 }
 
 def notifyStarted() {
@@ -33,4 +43,23 @@ def notifyStarted() {
         <p>Check console output at &QUOT;<a href='${env.BUILD_URL}'>${env.JOB_NAME} [${env.BUILD_NUMBER}]</a>&QUOT;</p>""",
       recipientProviders: [[$class: 'DevelopersRecipientProvider']]
     )
-}
+}*/
+post{
+success{
+		mail body:'''Build Over!..success
+		Regards,
+		Mithun Technologies''', subject:'Build Over...', to:'devopstrainingblr@gmail.com'
+				}
+failure{
+		mail body:'''Build Over!..failed
+		Regards,
+		Mithun Technologies''', subject:'Build Over...', to:'devopstrainingblr@gmail.com'
+	
+always{
+		mail body:'''Build Over!..
+		Regards,
+		Mithun Technologies''', subject:'Build Over...', to:'devopstrainingblr@gmail.com'
+				}
+				}
+		}
+
