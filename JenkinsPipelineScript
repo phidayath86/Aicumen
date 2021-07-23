@@ -21,7 +21,7 @@ stages {
     stage('Send Email') {
         steps {
             node ('master'){
-                echo 'Send Email'\
+                echo 'Send Email'
             }
         }
     }
