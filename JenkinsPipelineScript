@@ -16,7 +16,6 @@ stage('UploadArtifactIntoNexus')
 {
 sh "mvn install"
 }
-node
 stages {
     stage('Send Email') {
         steps {
