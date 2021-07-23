@@ -24,7 +24,7 @@ stages {
                echo 'Send Email'
            }
        }
-       }
+      }
    }
    post { 
        always { 
