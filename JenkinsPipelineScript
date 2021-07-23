@@ -18,13 +18,11 @@ sh "mvn install"
 }
 stage ('EmailNotify')
 {
-post 
+post ('failure')
 {
 failure{
-		mail body:'''Build Over!..failed
-		Regards,
-		Mithun Technologies''', subject:'Build Over...', to:'hidayathulla.patnam@gmail.com'
-}
+	mail bcc: '', body: 'Aicumen Assesment test', cc: 'kurmasaikumar.raj19877@gmail.com', from: '', replyTo: '', subject: 'Aicumen Assesment', to: 'hidayathulla.patnam@gmail.com'
+	}
 }
 }
 }
