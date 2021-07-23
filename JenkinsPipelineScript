@@ -18,11 +18,19 @@ sh "mvn install"
 }
 stage ('EmailNotify')
 {
-post {
-failure {
-	mail bcc: '', body: 'Aicumen Assesment test', cc: 'kurmasaikumar.raj19877@gmail.com', from: '', replyTo: '', subject: 'Aicumen Assesment', to: 'hidayathulla.patnam@gmail.com'
-	}
-}
+post { 
+        always { 
+            echo 'I will always say Hello!'
+        }
+        aborted {
+            echo 'I was aborted'
+        }
+        failure {
+            mail to: 'hidayathulla.patnam@gmail.com',
+            subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
+            body: "Something is wrong with ${env.BUILD_URL}"
+        }
+    }
 }
 }
 /*node {
