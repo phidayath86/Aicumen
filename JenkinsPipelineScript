@@ -18,9 +18,8 @@ sh "mvn install"
 }
 stage ('EmailNotify')
 {
-post ('failure')
-{
-failure{
+post {
+failure {
 	mail bcc: '', body: 'Aicumen Assesment test', cc: 'kurmasaikumar.raj19877@gmail.com', from: '', replyTo: '', subject: 'Aicumen Assesment', to: 'hidayathulla.patnam@gmail.com'
 	}
 }
