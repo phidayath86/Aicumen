@@ -1,0 +1,36 @@
+node
+{
+stage ('GetCodeFromGit')
+{
+git branch: 'main', credentialsId: 'b21d26ef-b8cd-44db-8619-d4aa4082d36f', url: 'https://github.com/phidayath86/Aicumen.git'
+}
+stage('Build')
+{
+sh "mvn clean package"
+}
+stage('SonarQubeReport')
+{
+sh "mvn sonar:sonar"
+}
+stage('UploadArtifactIntoNexus')
+{
+sh "mvn install"
+}
+}
+node {
+
+  notifyStarted()
+
+  /* ... existing build steps ... */
+}
+
+def notifyStarted() {
+  // send to email
+  emailext (
+      subject: "STARTED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
+      to: "amisetty.siva@gmail.com",
+      body: """<p>STARTED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':</p>
+        <p>Check console output at &QUOT;<a href='${env.BUILD_URL}'>${env.JOB_NAME} [${env.BUILD_NUMBER}]</a>&QUOT;</p>""",
+      recipientProviders: [[$class: 'DevelopersRecipientProvider']]
+    )
+}
