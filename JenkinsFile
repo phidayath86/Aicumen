@@ -28,3 +28,4 @@ node
         emailext body: "Caught: ${err}", subject: 'BUILD FAILED', to: 'hidayathulla.patnam@gmail.com'
         }
 }
+}
