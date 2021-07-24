@@ -20,7 +20,7 @@ node
         }
         stage('DeployAppInto TomcatServer')
         {
-        sshagent(['0d479fb1-2fc7-40b8-b88d-693b3c31b792']) 
+        sshagent(['JerryTomcat']) 
         {
         sudo sh "scp -o StrictHostKeyChecking=no target/maven-web-application.war ubuntu@3.140.190.15:/var/lib/tomcat9/webapps/"
         }
