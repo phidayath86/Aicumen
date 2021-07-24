@@ -22,7 +22,7 @@ node
         {
         sshagent(['JerryTomcat']) 
         {
-        sudo sh "scp -o StrictHostKeyChecking=no target/maven-web-application.war ubuntu@172.31.24.244:/var/lib/tomcat9/webapps/"
+        sudo sh "scp -o StrictHostKeyChecking=no target/maven-web-application.war ubuntu@172.31.24.244:/var/lib/tomcat9/webapps/maven-web-application.war"
         }
         }
     }catch (err) {
