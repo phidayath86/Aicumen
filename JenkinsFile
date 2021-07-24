@@ -18,7 +18,13 @@ node
         {
         sh "mvn install"
         }
+        stage('DeployAppInto TomcatServer')
+        {
+        sshagent(['TomcatServerCredentential']) 
+        {
+        sh "scp -o StrictHostKeyChecking=no target/maven-web-application.war ubuntu@3.140.190.15:etc/tomcat9/webapps/
+        }
     }catch (err) {
         emailext body: "Caught: ${err}", subject: 'BUILD FAILED', to: 'hidayathulla.patnam@gmail.com'
-    }
+        }
 }
