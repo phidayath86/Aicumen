@@ -1,7 +1,7 @@
 node
 {
     try{
-        properties([pipelineTriggers([pollSCM('50 17 * * *')])])
+        properties([pipelineTriggers([pollSCM('10 18 * * *')])])
         stage ('GetCodeFromGit')
         {
         git branch: 'main', credentialsId: 'b21d26ef-b8cd-44db-8619-d4aa4082d36f', url: 'https://github.com/phidayath86/Aicumen.git'
