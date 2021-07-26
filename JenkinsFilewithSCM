@@ -26,8 +26,8 @@ node
         sh "scp -o StrictHostKeyChecking=no target/maven-web-application.war ubuntu@18.118.197.14:/var/lib/tomcat9/webapps/"
         }
         }
+	}
     }catch (err) {
         emailext body: "Caught: ${err}", subject: 'BUILD FAILED', to: 'hidayathulla.patnam@gmail.com'
         }
-	}
 }
