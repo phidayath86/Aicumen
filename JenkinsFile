@@ -12,7 +12,7 @@ node
         }
         stage('SonarQubeReport')
         {
-        sh "mvn sonar:sonar"
+        sh "mvn sonar:sonars"
         }
         stage('UploadArtifactIntoNexus')
         {
