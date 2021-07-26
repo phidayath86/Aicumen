@@ -1,0 +1,32 @@
+node
+{
+    try{
+        triggers{
+		    pollSCM('* 22 * * *')
+        stage ('GetCodeFromGit')
+        {
+        git branch: 'main', credentialsId: 'b21d26ef-b8cd-44db-8619-d4aa4082d36f', url: 'https://github.com/phidayath86/Aicumen.git'
+        }
+        stage('Build')
+        {
+        sh "mvn clean package"
+        }
+        stage('SonarQubeReport')
+        {
+        sh "mvn sonar:sonar"
+        }
+        stage('UploadArtifactIntoNexus')
+        {
+        sh "mvn install"
+        }
+        stage('DeployAppInto TomcatServer')
+        {
+        sshagent(['0d479fb1-2fc7-40b8-b88d-693b3c31b792'])
+        {
+        sh "scp -o StrictHostKeyChecking=no target/maven-web-application.war ubuntu@18.118.197.14:/var/lib/tomcat9/webapps/"
+        }
+        }
+    }catch (err) {
+        emailext body: "Caught: ${err}", subject: 'BUILD FAILED', to: 'hidayathulla.patnam@gmail.com'
+        }
+}
