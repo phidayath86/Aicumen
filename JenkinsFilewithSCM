@@ -2,7 +2,7 @@ node
 {
     try{
         triggers{
-	pollSCM('8 23 * * *')
+	pollSCM('43 5 * * *')
         stage ('GetCodeFromGit')
         {
         git branch: 'main', credentialsId: 'b21d26ef-b8cd-44db-8619-d4aa4082d36f', url: 'https://github.com/phidayath86/Aicumen.git'
