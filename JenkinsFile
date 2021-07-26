@@ -1,6 +1,9 @@
 node
 {
     try{
+        script {
+        properties([pipelineTriggers([pollSCM('')])])
+                }
         stage ('GetCodeFromGit')
         {
         git branch: 'main', credentialsId: 'b21d26ef-b8cd-44db-8619-d4aa4082d36f', url: 'https://github.com/phidayath86/Aicumen.git'
@@ -11,7 +14,7 @@ node
         }
         stage('SonarQubeReport')
         {
-        sh "mvn sonar:sonars"
+        sh "mvn sonar:sonar"
         }
         stage('UploadArtifactIntoNexus')
         {
