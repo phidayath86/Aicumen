@@ -2,7 +2,7 @@ node
 {
     try{
         script {
-        properties([pipelineTriggers([pollSCM('20 18 * * *')])])
+        properties([pipelineTriggers([pollSCM('23 18 * * *')])])
         }
         stage ('GetCodeFromGit')
         {
