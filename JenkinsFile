@@ -13,11 +13,11 @@ node
         {
         sh "mvn sonar:sonar"
         }
-        stage('UploadArtifactIntoNexus')
+        /*stage('UploadArtifactIntoNexus')
         {
         sh "mvn install"
         }
-        /*stage('DeployAppInto TomcatServer')
+        stage('DeployAppInto TomcatServer')
         {
         sshagent(['0d479fb1-2fc7-40b8-b88d-693b3c31b792'])
         {
