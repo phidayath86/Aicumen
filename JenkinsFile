@@ -13,17 +13,7 @@ node
         {
         sh "mvn sonar:sonar"
         }
-        /*stage('UploadArtifactIntoNexus')
-        {
-        sh "mvn install"
-        }
-        stage('DeployAppInto TomcatServer')
-        {
-        sshagent(['0d479fb1-2fc7-40b8-b88d-693b3c31b792'])
-        {
-        sh "scp -o StrictHostKeyChecking=no target/maven-web-application.war ubuntu@3.15.232.59:/var/lib/tomcat9/webapps/"
-        }
-        }*/
+       
     }catch (err) {
         emailext body: "Caught: ${err}", subject: 'BUILD FAILED', to: 'hidayathulla.patnam@gmail.com'
         }
